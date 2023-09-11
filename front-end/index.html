@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Authentication</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>User Authentication</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Log In</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        // Define a simple list of allowed users with their passwords
+        const users = [
+            { username: "user1", password: "password1" },
+            { username: "user2", password: "password2" },
+            { username: "user3", password: "password3" }
+        ];
+
+        // Handle the form submission
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get the entered username and password
+            const enteredUsername = document.getElementById("username").value;
+            const enteredPassword = document.getElementById("password").value;
+
+            // Check if the entered username and password match any of the users
+            const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
+
+            // If a matching user is found, redirect to the report submission page
+            if (user) {
+                window.location.href = "report_submission.html"; // Replace with your report submission page URL
+            } else {
+                // Display an error message if authentication fails
+                document.getElementById("message").textContent = "Invalid username or password....Please try again !";
+            }
+        });
+    </script>
+</body>
+</html>
